@@ -2,11 +2,11 @@ package day2;
 
 import inputReader.InputReader;
 
-public class DayTwo {
-//example: 9-12 q: qqqxhnhdmqqqqjz
+public class DayTwoSecond {
+
+	// example: 9-12 q: qqqxhnhdmqqqqjz
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day2/day2.txt", "");
-		int numberOfValidPasswordsForFirstHalf = 0;
 		int numberOfValidPasswordsForSecondHalf = 0;
 
 		for (int i = 0; i < inputOfTheDay.length; i++) {
@@ -16,24 +16,17 @@ public class DayTwo {
 
 			String passWord = splittedPolicy[1];
 			char searchedCharInThePassword = limitsAndThechar[1].charAt(0);
-			int minLimit = Integer.parseInt(limits[0]);
-			int maxLimit = Integer.parseInt(limits[1]);
+			int minIdx = Integer.parseInt(limits[0]);
+			int maxIdx = Integer.parseInt(limits[1]);
 
 			if (passWord.contains(limitsAndThechar[1])) {
 				char[] passwordAsCharacterArray = passWord.toCharArray();
-
-				if (passwordValidatorForFirstHalf(passwordAsCharacterArray, searchedCharInThePassword, minLimit,
-						maxLimit)) {
-					numberOfValidPasswordsForFirstHalf++;
-				}
-
-				if (passwordValidatorForSecondHalf(passwordAsCharacterArray, searchedCharInThePassword, minLimit,
-						maxLimit)) {
+				if (passwordValidatorForSecondHalf(passwordAsCharacterArray, searchedCharInThePassword, minIdx,
+						maxIdx)) {
 					numberOfValidPasswordsForSecondHalf++;
 				}
 			}
 		}
-		System.out.println("Result is for the first half: " + numberOfValidPasswordsForFirstHalf);
 		System.out.println("Result is for the second half: " + numberOfValidPasswordsForSecondHalf);
 	}
 
@@ -49,19 +42,5 @@ public class DayTwo {
 			valid = !valid;
 		}
 		return valid;
-	}
-
-	private static boolean passwordValidatorForFirstHalf(char[] passwordAsCharacterArray,
-			char searchedCharInThePassword, int minLimit, int maxLimit) {
-		int numberOfSearchedCharacter = 0;
-		for (int j = 0; j < passwordAsCharacterArray.length; j++) {
-			if (passwordAsCharacterArray[j] == searchedCharInThePassword) {
-				numberOfSearchedCharacter++;
-			}
-		}
-		if (numberOfSearchedCharacter <= maxLimit && numberOfSearchedCharacter >= minLimit) {
-			return true;
-		}
-		return false;
 	}
 }

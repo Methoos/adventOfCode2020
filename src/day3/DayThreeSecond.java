@@ -2,12 +2,10 @@ package day3;
 
 import inputReader.InputReader;
 
-public class DayThree {
-
+public class DayThreeSecond {
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day3/day3.txt", "");
 		long multipliedTrees = 1L;
-
 		multipliedTrees *= countingTrees(1, 1, inputOfTheDay);
 		multipliedTrees *= countingTrees(3, 1, inputOfTheDay);
 		multipliedTrees *= countingTrees(5, 1, inputOfTheDay);
@@ -17,7 +15,6 @@ public class DayThree {
 	}
 
 	private static int countingTrees(int moveRight, int moveDown, String[] inputOfTheDay) {
-
 		int countedTrees = 0;
 		int positionOfTheTraveler = 0;
 		int row = 0;
@@ -32,5 +29,4 @@ public class DayThree {
 				+ " excercise.");
 		return countedTrees;
 	}
-
 }
