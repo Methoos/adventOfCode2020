@@ -1,7 +1,5 @@
 package day4;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import inputReader.InputReader;
 
 public class DayFourSecond {
@@ -61,26 +59,24 @@ public class DayFourSecond {
 	}
 
 	private static boolean validatorHCL(String value) {
-		String regex = "[0-9]||[a-f]";
-		Pattern pattern = Pattern.compile(regex);
-		if (value.startsWith("#") && value.length() == 7) {
-			Matcher matcher = pattern.matcher(value);
-			return matcher.lookingAt();
-		} else {
-			return false;
-		}
+		return value.matches("^#[0-9a-f]{6}$");
 	}
 
 	private static boolean validatorHGT(String value) {
 		if (value.contains("in")) {
-			int height = Integer.parseInt(value.split("in")[0]);
-			return height <= 76 && height >= 59;
+			value = value.split("in")[0];
+			return betweenMinMax(value, 59, 76);
 		}
 		if (value.contains("cm")) {
-			int height = Integer.parseInt(value.split("cm")[0]);
-			return height <= 193 && height >= 150;
+			value = value.split("cm")[0];
+			return betweenMinMax(value, 150, 193);
 		}
 		return false;
+	}
+
+	private static boolean betweenMinMax(String value, int min, int max) {
+		int number = Integer.parseInt(value);
+		return number >= min && number <= max;
 	}
 
 	private static boolean validatorECL(String value) {
@@ -98,31 +94,34 @@ public class DayFourSecond {
 	}
 
 	private static boolean validatorEYR(String value) {
-		if (value.length() < 4) {
-			return false;
+		if (lengthCheck(value))  {
+			return betweenMinMax(value, 2020, 2030);
 		}
-		int number = Integer.parseInt(value);
-		return number <= 2030 && number >= 2020;
+		return false;
 	}
 
 	private static boolean validatorIYR(String value) {
-		if (value.length() < 4) {
-			return false;
+		if (lengthCheck(value)) {
+			return betweenMinMax(value, 2010, 2020);
 		}
-		int number = Integer.parseInt(value);
-		return number <= 2020 && number >= 2010;
+		return false;
 	}
 
 	private static boolean validatorBYR(String value) {
-		if (value.length() < 4) {
-			return false;
+		if (lengthCheck(value)) {
+			return betweenMinMax(value, 1920, 2002);
 		}
-		int number = Integer.parseInt(value);
-		return number <= 2002 && number >= 1920;
+		return false;
 	}
-	
-	private static String splitRawString(String rawString, String requiredField) {
 
+	private static boolean lengthCheck(String value) {
+		if (value.length() == 4) {
+			return true;
+		}
+		return false;
+	}
+
+	private static String splitRawString(String rawString, String requiredField) {
 		String[] splittedRawString = rawString.split(" ");
 		String value = null;
 		for (int i = 0; i < splittedRawString.length; i++) {
