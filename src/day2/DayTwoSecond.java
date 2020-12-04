@@ -3,11 +3,10 @@ package day2;
 import inputReader.InputReader;
 
 public class DayTwoSecond {
-
 	// example: 9-12 q: qqqxhnhdmqqqqjz
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day2/day2.txt", "");
-		int numberOfValidPasswordsForSecondHalf = 0;
+		int numberOfValidPasswords = 0;
 
 		for (int i = 0; i < inputOfTheDay.length; i++) {
 			String[] splittedPolicy = inputOfTheDay[i].split(": ");
@@ -23,11 +22,11 @@ public class DayTwoSecond {
 				char[] passwordAsCharacterArray = passWord.toCharArray();
 				if (passwordValidatorForSecondHalf(passwordAsCharacterArray, searchedCharInThePassword, minIdx,
 						maxIdx)) {
-					numberOfValidPasswordsForSecondHalf++;
+					numberOfValidPasswords++;
 				}
 			}
 		}
-		System.out.println("Result is for the second half: " + numberOfValidPasswordsForSecondHalf);
+		System.out.println("Result is for the second half: " + numberOfValidPasswords);
 	}
 
 	private static boolean passwordValidatorForSecondHalf(char[] passwordAsCharacterArray,

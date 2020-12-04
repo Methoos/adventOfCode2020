@@ -6,7 +6,7 @@ public class DayTwoFirst {
 //example: 9-12 q: qqqxhnhdmqqqqjz
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day2/day2.txt", "");
-		int numberOfValidPasswordsForFirstHalf = 0;
+		int numberOfValidPasswords = 0;
 
 		for (int i = 0; i < inputOfTheDay.length; i++) {
 			String[] splittedPolicy = inputOfTheDay[i].split(": ");
@@ -23,11 +23,11 @@ public class DayTwoFirst {
 
 				if (passwordValidatorForFirstHalf(passwordAsCharacterArray, searchedCharInThePassword, minLimit,
 						maxLimit)) {
-					numberOfValidPasswordsForFirstHalf++;
+					numberOfValidPasswords++;
 				}
 			}
 		}
-		System.out.println("Result is for the first half: " + numberOfValidPasswordsForFirstHalf);
+		System.out.println("Result is for the first half: " + numberOfValidPasswords);
 	}
 
 	private static boolean passwordValidatorForFirstHalf(char[] passwordAsCharacterArray,
