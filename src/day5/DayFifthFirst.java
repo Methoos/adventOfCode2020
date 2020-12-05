@@ -11,13 +11,11 @@ public class DayFifthFirst {
 			int[] rangeOfRows = { 0, 127 };
 			int[] rangeOfColumns = { 0, 7 };
 			for (int j = 0; j < inputOfTheDay[i].length(); j++) {
-				int sumRow = rangeOfRows[0] + rangeOfRows[1];
-				int sumColumn = rangeOfColumns[0] + rangeOfColumns[1];	
 				switch (inputOfTheDay[i].substring(j, j + 1)) {
-				case "F":rangeOfRows[1] = (sumRow / 2);break;
-				case "B":rangeOfRows[0] = (sumRow / 2);break;
-				case "R":rangeOfColumns[0] = (sumColumn / 2);break;
-				case "L": rangeOfColumns[1] = (sumColumn / 2);break;
+				case "F":rangeOfRows[1] = ((rangeOfRows[0] + rangeOfRows[1]) / 2);break;
+				case "B":rangeOfRows[0] = ((rangeOfRows[0] + rangeOfRows[1]) / 2);break;
+				case "R":rangeOfColumns[0] = ((rangeOfColumns[0] + rangeOfColumns[1]) / 2);break;
+				case "L": rangeOfColumns[1] = ((rangeOfColumns[0] + rangeOfColumns[1])/ 2);break;
 				}
 				seatID = rangeOfRows[1] * 8 + rangeOfColumns[1];
 			}
