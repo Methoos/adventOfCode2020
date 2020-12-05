@@ -1,11 +1,14 @@
 package day5;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import inputReader.InputReader;
 
 public class DayFifthSecond {
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day5/day5.txt", "");
-		int seatID = 0;
+		List<Integer> seatIDs = new ArrayList<Integer>();
 		for (int i = 0; i < inputOfTheDay.length; i++) {
 			int[] rangeOfRows = { 0, 127 };
 			int[] rangeOfColumns = { 0, 7 };
@@ -25,10 +28,21 @@ public class DayFifthSecond {
 					rangeOfColumns[1] = (sumColumn / 2);
 				}
 			}
-			if (seatID <= (rangeOfRows[1] * 8 + rangeOfColumns[1])) {
-				seatID = rangeOfRows[1] * 8 + rangeOfColumns[1];
+			seatIDs.add(rangeOfRows[1] * 8 + rangeOfColumns[1]);
+		}
+		searchMySeatID(seatIDs);
+	}
+
+	private static void searchMySeatID(List<Integer> seatIDs) {
+		for (int i = 0; i < seatIDs.size(); i++) {
+			int seatID = seatIDs.get(i);
+			for (int j = i + 1; j < seatIDs.size(); j++) {
+				if (((seatID + 2)) == seatIDs.get(j)) {
+					if (!seatIDs.contains(seatID + 1)) {
+						System.out.println("My seat ID is: " + (seatID + 1));
+					}
+				}
 			}
 		}
-		System.out.println("The biggest seat ID is: " + seatID);
 	}
 }
