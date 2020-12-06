@@ -28,11 +28,7 @@ public class DayFifthSecond {
 	private static void searchMySeatID(List<Integer> seatIDs) {
 		loop: for (int i = 0; i < seatIDs.size(); i++) {
 			int seatID = seatIDs.get(i);
-			for (int j = i + 1; j < seatIDs.size(); j++) {
-				if (((seatID + 2)) == seatIDs.get(j) && !seatIDs.contains(seatID + 1)) {
-					System.out.println("My seat ID is: " + (seatID + 1)); break loop;
-				}
-			}
+				if (!seatIDs.contains(seatID + 1)) {System.out.println("My seat ID is: " + (seatID + 1)); break loop;}
 		}
 	}
 }
