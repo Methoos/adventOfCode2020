@@ -20,7 +20,7 @@ public class DayTwoSecond {
 
 			if (passWord.contains(limitsAndThechar[1])) {
 				char[] passwordAsCharacterArray = passWord.toCharArray();
-				if (passwordValidatorForSecondHalf(passwordAsCharacterArray, searchedCharInThePassword, minIdx,
+				if (passwordValidator(passwordAsCharacterArray, searchedCharInThePassword, minIdx,
 						maxIdx)) {
 					numberOfValidPasswords++;
 				}
@@ -29,7 +29,7 @@ public class DayTwoSecond {
 		System.out.println("Result is for the second half: " + numberOfValidPasswords);
 	}
 
-	private static boolean passwordValidatorForSecondHalf(char[] passwordAsCharacterArray,
+	private static boolean passwordValidator(char[] passwordAsCharacterArray,
 			char searchedCharInThePassword, int minLimit, int maxLimit) {
 		boolean valid = false;
 		// (passwordAsCharacterArray[minLimit - 1] == searchedCharInThePassword) ^
