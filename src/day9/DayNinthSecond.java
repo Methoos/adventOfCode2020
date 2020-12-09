@@ -79,7 +79,7 @@ public class DayNinthSecond {
 			long searchedNumber) {
 		int secondNumbIdx = firstNumbIdx + 1;
 		while (secondNumbIdx < theNumbIdx) {
-			if (checkSum(firstNumb, numberList.get(secondNumbIdx), searchedNumber, numberList)) {
+			if (checkSum(firstNumb, numberList.get(secondNumbIdx), searchedNumber)) {
 				return true;
 			}
 			secondNumbIdx++;
@@ -87,7 +87,7 @@ public class DayNinthSecond {
 		return false;
 	}
 
-	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber, List<Long> numberList) {
+	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber) {
 		return searchedNumber == firstNumb + secondNumber;
 	}
 }
