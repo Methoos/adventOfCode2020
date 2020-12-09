@@ -9,50 +9,50 @@ public class DayNinthFirst {
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day9/day9.txt", "");
 		final int preamble = 25;
-		List<Long> numbers = createLongFromLines(inputOfTheDay);
+		List<Long> numbersList = createLongFromLines(inputOfTheDay);
 
-		System.out.println(searchForTheNumber(numbers, preamble) + " is the searched number.");
+		System.out.println(searchForTheNumber(numbersList, preamble) + " is the searched number.");
 	}
 
 	private static List<Long> createLongFromLines(String[] inputOfTheDay) {
-		List<Long> numbers = new ArrayList<Long>();
-		for (int i = 0; i < inputOfTheDay.length; i++) {
-			numbers.add(Long.parseLong(inputOfTheDay[i]));
+		List<Long> numbersList = new ArrayList<Long>();
+		for (int line = 0; line < inputOfTheDay.length; line++) {
+			numbersList.add(Long.parseLong(inputOfTheDay[line]));
 		}
-		return numbers;
+		return numbersList;
 	}
 
-	private static long searchForTheNumber(List<Long> Numbers, int preamble) {
-		for (int numb = preamble; numb < Numbers.size(); numb++) {
-			if (!searchInSubList(Numbers, Numbers.get(numb), numb, preamble)) {
-				return Numbers.get(numb);
+	private static long searchForTheNumber(List<Long> numbersList, int preamble) {
+		for (int theNumbIdx = preamble; theNumbIdx < numbersList.size(); theNumbIdx++) {
+			if (!searchInSubList(numbersList, numbersList.get(theNumbIdx), theNumbIdx, preamble)) {
+				return numbersList.get(theNumbIdx);
 			}
 		}
 		return -1;
 	}
 
-	private static boolean searchInSubList(List<Long> numbers, long searchedNumber, int numb, int preamble) {
-		for (int i = numb - preamble; i < numb - 1; i++) {
-			if (searchInSubSubList(numbers.get(i), numbers, i, numb, searchedNumber)) {
+	private static boolean searchInSubList(List<Long> numbersList, long searchedNumber, int theNumbIdx, int preamble) {
+		for (int firstNumbIdx = theNumbIdx - preamble; firstNumbIdx < theNumbIdx - 1; firstNumbIdx++) {
+			if (searchInSubSubList(numbersList.get(firstNumbIdx), numbersList, firstNumbIdx, theNumbIdx, searchedNumber)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private static boolean searchInSubSubList(long firstNumb, List<Long> numbers, int i, int numb,
+	private static boolean searchInSubSubList(long firstNumb, List<Long> numbersList, int firstNumbIdx, int theNumbIdx,
 			long searchedNumber) {
-		int j = i + 1;
-		while (j < numb) {
-			if (checkSum(firstNumb, numbers.get(j), searchedNumber, numbers)) {
+		int secondNumbIdx = firstNumbIdx + 1;
+		while (secondNumbIdx < theNumbIdx) {
+			if (checkSum(firstNumb, numbersList.get(secondNumbIdx), searchedNumber, numbersList)) {
 				return true;
 			}
-			j++;
+			secondNumbIdx++;
 		}
 		return false;
 	}
 
-	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber, List<Long> numbers) {
+	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber, List<Long> numbersList) {
 		return searchedNumber == firstNumb + secondNumber;
 	}
 }
