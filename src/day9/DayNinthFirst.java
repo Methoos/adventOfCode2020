@@ -9,42 +9,43 @@ public class DayNinthFirst {
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day9/day9.txt", "");
 		final int preamble = 25;
-		List<Long> numbersList = createLongFromLines(inputOfTheDay);
-
-		System.out.println(searchForTheNumber(numbersList, preamble) + " is the searched number.");
+//		String[] inputOfTheDay = InputReader.read("src/day9/example.txt", "");
+//		final int preamble = 5;
+		List<Long> numberList = createLongFromLines(inputOfTheDay);
+		System.out.println(searchForTheNumber(numberList, preamble) + " is the invalid number.");
 	}
 
 	private static List<Long> createLongFromLines(String[] inputOfTheDay) {
-		List<Long> numbersList = new ArrayList<Long>();
+		List<Long> numberList = new ArrayList<Long>();
 		for (int line = 0; line < inputOfTheDay.length; line++) {
-			numbersList.add(Long.parseLong(inputOfTheDay[line]));
+			numberList.add(Long.parseLong(inputOfTheDay[line]));
 		}
-		return numbersList;
+		return numberList;
 	}
 
-	private static long searchForTheNumber(List<Long> numbersList, int preamble) {
-		for (int theNumbIdx = preamble; theNumbIdx < numbersList.size(); theNumbIdx++) {
-			if (!searchInSubList(numbersList, numbersList.get(theNumbIdx), theNumbIdx, preamble)) {
-				return numbersList.get(theNumbIdx);
+	private static long searchForTheNumber(List<Long> numberList, int preamble) {
+		for (int theNumbIdx = preamble; theNumbIdx < numberList.size(); theNumbIdx++) {
+			if (!searchInSubList(numberList, numberList.get(theNumbIdx), theNumbIdx, preamble)) {
+				return numberList.get(theNumbIdx);
 			}
 		}
 		return -1;
 	}
 
-	private static boolean searchInSubList(List<Long> numbersList, long searchedNumber, int theNumbIdx, int preamble) {
+	private static boolean searchInSubList(List<Long> numberList, long searchedNumber, int theNumbIdx, int preamble) {
 		for (int firstNumbIdx = theNumbIdx - preamble; firstNumbIdx < theNumbIdx - 1; firstNumbIdx++) {
-			if (searchInSubSubList(numbersList.get(firstNumbIdx), numbersList, firstNumbIdx, theNumbIdx, searchedNumber)) {
+			if (searchInSubSubList(numberList.get(firstNumbIdx), numberList, firstNumbIdx, theNumbIdx, searchedNumber)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	private static boolean searchInSubSubList(long firstNumb, List<Long> numbersList, int firstNumbIdx, int theNumbIdx,
+	private static boolean searchInSubSubList(long firstNumb, List<Long> numberList, int firstNumbIdx, int theNumbIdx,
 			long searchedNumber) {
 		int secondNumbIdx = firstNumbIdx + 1;
 		while (secondNumbIdx < theNumbIdx) {
-			if (checkSum(firstNumb, numbersList.get(secondNumbIdx), searchedNumber, numbersList)) {
+			if (checkSum(firstNumb, numberList.get(secondNumbIdx), searchedNumber, numberList)) {
 				return true;
 			}
 			secondNumbIdx++;
@@ -52,7 +53,7 @@ public class DayNinthFirst {
 		return false;
 	}
 
-	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber, List<Long> numbersList) {
+	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber, List<Long> numberList) {
 		return searchedNumber == firstNumb + secondNumber;
 	}
 }
