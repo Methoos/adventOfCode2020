@@ -1,6 +1,5 @@
 package day9;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -17,8 +16,8 @@ public class DayNinthSecond {
 	}
 
 	private static long encryptXMAS(String[] inputOfTheDay, int preamble) {
-		List<Long> numberList = createLongFromLines(inputOfTheDay);
-		long invalidNumb = searchForInvalidNumb(numberList, preamble);
+		List<Long> numberList =DayNinthFirst.createLongFromLines(inputOfTheDay);
+		long invalidNumb = DayNinthFirst.searchForInvalidNumber(numberList, preamble);
 		//System.out.println(invalidNumb + " is the invalid number.");
 		Set<Long> contegousNumbs = findConteousNumsAsSum(invalidNumb, numberList);
 		Long[] contegousNumbsAsArray = contegousNumbs.toArray(new Long[contegousNumbs.size()]);
@@ -46,48 +45,5 @@ public class DayNinthSecond {
 			index++;
 		}
 		return contegousNumbs;
-	}
-
-	private static List<Long> createLongFromLines(String[] inputOfTheDay) {
-		List<Long> numberList = new ArrayList<Long>();
-		for (int line = 0; line < inputOfTheDay.length; line++) {
-			numberList.add(Long.parseLong(inputOfTheDay[line]));
-		}
-		return numberList;
-	}
-
-	private static long searchForInvalidNumb(List<Long> numberList, int preamble) {
-		for (int theNumbIdx = preamble; theNumbIdx < numberList.size(); theNumbIdx++) {
-			if (!searchInSubList(numberList, numberList.get(theNumbIdx), theNumbIdx, preamble)) {
-				return numberList.get(theNumbIdx);
-			}
-		}
-		return -1;
-	}
-
-	private static boolean searchInSubList(List<Long> numberList, long searchedNumber, int theNumbIdx, int preamble) {
-		for (int firstNumbIdx = theNumbIdx - preamble; firstNumbIdx < theNumbIdx - 1; firstNumbIdx++) {
-			if (searchInSubSubList(numberList.get(firstNumbIdx), numberList, firstNumbIdx, theNumbIdx,
-					searchedNumber)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private static boolean searchInSubSubList(long firstNumb, List<Long> numberList, int firstNumbIdx, int theNumbIdx,
-			long searchedNumber) {
-		int secondNumbIdx = firstNumbIdx + 1;
-		while (secondNumbIdx < theNumbIdx) {
-			if (checkSum(firstNumb, numberList.get(secondNumbIdx), searchedNumber)) {
-				return true;
-			}
-			secondNumbIdx++;
-		}
-		return false;
-	}
-
-	private static boolean checkSum(long firstNumb, long secondNumber, long searchedNumber) {
-		return searchedNumber == firstNumb + secondNumber;
 	}
 }

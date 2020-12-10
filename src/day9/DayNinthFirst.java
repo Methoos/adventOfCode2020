@@ -12,10 +12,10 @@ public class DayNinthFirst {
 //		String[] inputOfTheDay = InputReader.read("src/day9/example.txt", "");
 //		final int preamble = 5;
 		List<Long> numberList = createLongFromLines(inputOfTheDay);
-		System.out.println(searchForTheNumber(numberList, preamble) + " is the invalid number.");
+		System.out.println(searchForInvalidNumber(numberList, preamble) + " is the invalid number.");
 	}
 
-	private static List<Long> createLongFromLines(String[] inputOfTheDay) {
+	public static List<Long> createLongFromLines(String[] inputOfTheDay) {
 		List<Long> numberList = new ArrayList<Long>();
 		for (int line = 0; line < inputOfTheDay.length; line++) {
 			numberList.add(Long.parseLong(inputOfTheDay[line]));
@@ -23,7 +23,7 @@ public class DayNinthFirst {
 		return numberList;
 	}
 
-	private static long searchForTheNumber(List<Long> numberList, int preamble) {
+	public static long searchForInvalidNumber(List<Long> numberList, int preamble) {
 		for (int theNumbIdx = preamble; theNumbIdx < numberList.size(); theNumbIdx++) {
 			if (!searchInSubList(numberList, numberList.get(theNumbIdx), theNumbIdx, preamble)) {
 				return numberList.get(theNumbIdx);

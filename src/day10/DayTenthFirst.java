@@ -22,7 +22,7 @@ public class DayTenthFirst {
 		return diffOne * ++diffThree;
 	}
 
-	private static Integer[] makeSortedIntegerArrayFromLines(String[] inputOfTheDay) {
+	public static Integer[] makeSortedIntegerArrayFromLines(String[] inputOfTheDay) {
 		Set<Integer> adapters = new TreeSet<>();
 		for (int line = 0; line < inputOfTheDay.length; line++) {
 			adapters.add(Integer.parseInt(inputOfTheDay[line]));
