@@ -16,7 +16,6 @@ public class DayTenthFirst {
 		int rating = 0; int diffOne = 0; int diffThree = 0;
 		for (int i = 0; i < adapters.length; i++) {
 			if ((adapters[i] - rating) == 1) diffOne++;
-			
 			if ((adapters[i] - rating) == 3) diffThree++;
 			rating = adapters[i];
 		}
