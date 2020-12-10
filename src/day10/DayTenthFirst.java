@@ -13,20 +13,14 @@ public class DayTenthFirst {
 	}
 
 	private static int multipleDifferences(Integer[] adapters) {
-		int rating = 0;
-		int diffOne = 0;
-		int diffThree = 0;
+		int rating = 0; int diffOne = 0; int diffThree = 0;
 		for (int i = 0; i < adapters.length; i++) {
-			if ((adapters[i] - rating) == 1) {
-				diffOne++;
-			}
-			if ((adapters[i] - rating) == 3) {
-				diffThree++;
-			}
+			if ((adapters[i] - rating) == 1) diffOne++;
+			
+			if ((adapters[i] - rating) == 3) diffThree++;
 			rating = adapters[i];
 		}
-		diffThree++;
-		return diffOne * diffThree;
+		return diffOne * ++diffThree;
 	}
 
 	private static Integer[] makeSortedIntegerArrayFromLines(String[] inputOfTheDay) {
