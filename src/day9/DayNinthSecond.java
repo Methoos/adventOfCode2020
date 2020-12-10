@@ -19,18 +19,17 @@ public class DayNinthSecond {
 		List<Long> numberList =DayNinthFirst.createLongFromLines(inputOfTheDay);
 		long invalidNumb = DayNinthFirst.searchForInvalidNumber(numberList, preamble);
 		//System.out.println(invalidNumb + " is the invalid number.");
-		Set<Long> contegousNumbs = findConteousNumsAsSum(invalidNumb, numberList);
+		return findWeakness(findConteousNumsAsSum(invalidNumb, numberList));
+	}
+
+	private static long findWeakness(Set<Long> contegousNumbs) {
 		Long[] contegousNumbsAsArray = contegousNumbs.toArray(new Long[contegousNumbs.size()]);
-		
 		return contegousNumbsAsArray[0] + contegousNumbsAsArray[contegousNumbsAsArray.length - 1];
 	}
 
 	private static Set<Long> findConteousNumsAsSum(long invalidNumb, List<Long> numberList) {
 		Set<Long> contegousNumbs = new TreeSet<>();
-		int startIdx = 0;
-		int index = 0;
-		long sumOfNumbers = 0;
-
+		int startIdx = 0; int index = 0; long sumOfNumbers = 0;
 		while (index < numberList.size()) {
 			sumOfNumbers += numberList.get(index);
 			contegousNumbs.add(numberList.get(index));
