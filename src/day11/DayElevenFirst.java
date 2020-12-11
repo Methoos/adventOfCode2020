@@ -24,9 +24,9 @@ public class DayElevenFirst {
 				changedLines.add(changesAndNewLine[1]);
 				changes += Integer.parseInt(changesAndNewLine[0]);
 			}
-			overWriteInputWithNewLines(inputOfTheDay,changedLines);
+			overWriteInputWithNewLines(inputOfTheDay, changedLines);
 			changedLines.clear();
-			
+
 			if (changes == 0) {
 				occupiedSeats = countOccupiedSeats(0, 0, inputOfTheDay, true);
 			}
@@ -68,7 +68,23 @@ public class DayElevenFirst {
 	}
 
 	private static int countOccupiedSeats(int idx, int lineIdx, String[] inputOfTheDay, boolean isEnd) {
+		int[] limits = findLimits(idx, lineIdx, inputOfTheDay, isEnd);
 		int occupiedSeats = 0;
+		if (!isEnd && inputOfTheDay[lineIdx].charAt(idx) == '#') {
+			occupiedSeats--;
+		}
+		for (int i = limits[0]; i <= limits[1]; i++) {
+			for (int j = limits[2]; j <= limits[3]; j++) {
+				if (inputOfTheDay[i].charAt(j) == '#') {
+					occupiedSeats++;
+				}
+			}
+		}
+		return occupiedSeats;
+	}
+
+	private static int[] findLimits(int idx, int lineIdx, String[] inputOfTheDay, boolean isEnd) {
+		int[] limits = new int[4];
 		int iFrom = lineIdx == 0 ? lineIdx : lineIdx - 1;
 		int iTo = lineIdx == inputOfTheDay.length - 1 ? lineIdx : lineIdx + 1;
 		int jFrom = idx == 0 ? idx : idx - 1;
@@ -79,16 +95,10 @@ public class DayElevenFirst {
 			jFrom = 0;
 			jTo = inputOfTheDay[lineIdx].length() - 1;
 		}
-		if (!isEnd && inputOfTheDay[lineIdx].charAt(idx) == '#') {
-			occupiedSeats--;
-		}
-		for (int i = iFrom; i <= iTo; i++) {
-			for (int j = jFrom; j <= jTo; j++) {
-				if (inputOfTheDay[i].charAt(j) == '#') {
-					occupiedSeats++;
-				}
-			}
-		}
-		return occupiedSeats;
+		limits[0] = iFrom;
+		limits[1] = iTo;
+		limits[2] = jFrom;
+		limits[3] = jTo;
+		return limits;
 	}
 }
