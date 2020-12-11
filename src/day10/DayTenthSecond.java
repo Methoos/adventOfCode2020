@@ -14,15 +14,10 @@ public class DayTenthSecond {
 
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day10/day10.txt", "");
-
 		List<Integer> adapters = makeListFromLines(inputOfTheDay);
-
 		cache = new HashMap<>();
-
 		long arrangements = findArrangements(adapters);
-
 		System.out.println("Answer is: " + arrangements);
-
 	}
 
 	private static List<Integer> makeListFromLines(String[] inputOfTheDay) {
