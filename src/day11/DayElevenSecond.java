@@ -5,17 +5,6 @@ import java.util.List;
 
 import inputReader.InputReader;
 
-//#.LL.LL.L#
-//#LLLLLL.LL
-//L.L.L..L..
-//LLLL.LL.LL
-//L.LL.LL.LL
-//L.LLLLL.LL
-//..L.L.....
-//LLLLLLLLL#
-//#.LLLLLL.L
-//#.LLLLL.L#
-
 public class DayElevenSecond extends DayElevenFirst {
 	public static void main(String[] args) {
 		String[] inputOfTheDay = InputReader.read("src/day11/day11.txt", "");
